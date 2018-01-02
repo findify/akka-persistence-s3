@@ -1,6 +1,6 @@
 package io.findify.akka.persistence.s3
 
-import com.amazonaws.regions.{ Regions, Region }
+import com.amazonaws.regions.{Regions, Region}
 import com.typesafe.config.Config
 
 private object AWSRegionNames {
@@ -20,22 +20,20 @@ private object AWSRegionNames {
 
 class S3ClientConfig(config: Config) {
   import AWSRegionNames._
-  val awsKey = config getString "aws-access-key-id"
-  val awsSecret = config getString "aws-secret-access-key"
   val awsUseDefaultCredentialsProviderChain = config getBoolean "aws-use-default-credentials-provider-chain"
   val region: Region = config getString "region" match {
-    case GovCloud       => Region.getRegion(Regions.GovCloud)
-    case US_EAST_1      => Region.getRegion(Regions.US_EAST_1)
-    case US_WEST_1      => Region.getRegion(Regions.US_WEST_1)
-    case US_WEST_2      => Region.getRegion(Regions.US_WEST_2)
-    case EU_WEST_1      => Region.getRegion(Regions.EU_WEST_1)
-    case EU_CENTRAL_1   => Region.getRegion(Regions.EU_CENTRAL_1)
+    case GovCloud => Region.getRegion(Regions.GovCloud)
+    case US_EAST_1 => Region.getRegion(Regions.US_EAST_1)
+    case US_WEST_1 => Region.getRegion(Regions.US_WEST_1)
+    case US_WEST_2 => Region.getRegion(Regions.US_WEST_2)
+    case EU_WEST_1 => Region.getRegion(Regions.EU_WEST_1)
+    case EU_CENTRAL_1 => Region.getRegion(Regions.EU_CENTRAL_1)
     case AP_SOUTHEAST_1 => Region.getRegion(Regions.AP_SOUTHEAST_1)
     case AP_SOUTHEAST_2 => Region.getRegion(Regions.AP_SOUTHEAST_2)
     case AP_NORTHEAST_1 => Region.getRegion(Regions.AP_NORTHEAST_1)
     case AP_NORTHEAST_2 => Region.getRegion(Regions.AP_NORTHEAST_2)
-    case SA_EAST_1      => Region.getRegion(Regions.SA_EAST_1)
-    case CN_NORTH_1     => Region.getRegion(Regions.CN_NORTH_1)
+    case SA_EAST_1 => Region.getRegion(Regions.SA_EAST_1)
+    case CN_NORTH_1 => Region.getRegion(Regions.CN_NORTH_1)
   }
   val endpoint: Option[String] = {
     val e = config getString "endpoint"
